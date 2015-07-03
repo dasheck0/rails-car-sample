@@ -1,0 +1,46 @@
+<h1>Cars</h1>
+<h2>Your cars</h2>
+
+<table>
+    <thead>
+        <td>Name</td>
+        <td>Color</td>
+        <td>Width</td>
+        <td>Length</td>
+        <td>Height</td>
+        <td></td>
+    </thead>
+    <tbody>
+        <% for car in @cars %>
+            <tr>
+              <td><%= car.name %></td>
+              <td><%= car.color %></td>
+              <td><%= car.width %></td>
+              <td><%= car.length %></td>
+              <td><%= car.height %></td>
+              <td><%= link_to('Delete', "/cars/#{car.id}/delete", :confirm => 'Are you sure?', :method => :delete) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<h2>Add new car</h2>
+
+<%= form_for @car, :url => { :controller => :car, :action => :add }, :method => :post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br />
+
+    <%= f.label :color %>
+    <%= f.text_field :color %><br />
+
+    <%= f.label :width %>
+    <%= f.text_field :width %><br />
+
+    <%= f.label :length %>
+    <%= f.text_field :length %><br />
+
+    <%= f.label :height %>
+    <%= f.text_field :height %><br />
+
+    <%= f.submit %>
+<% end %>
